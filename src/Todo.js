@@ -17,7 +17,8 @@ export default class Todo extends Component {
     }
 
     toggleComplete() {
-        this.setState({
+        this.setState(
+        {
             todo: {
                 body: this.state.todo.body,
                 completed: !this.state.todo.completed
@@ -30,7 +31,10 @@ export default class Todo extends Component {
     }
 
     editTodo() {
-        this.setState({editing: !this.state.editing})
+        this.setState({editing: true}, () => {
+            const input = document.querySelector('input.todo-body')
+            input.focus()
+        })
     }
 
     updateTodo() {
@@ -49,9 +53,9 @@ export default class Todo extends Component {
     render() {
         let todoBody = null;
         if (this.state.editing) {
-            todoBody = <input value={this.state.todo.body} onChange={this.handleChange} onBlur={this.updateTodo}/>
+            todoBody = <input className="todo-body" value={this.state.todo.body} onChange={this.handleChange} onBlur={this.updateTodo}/>
         } else {
-            todoBody = <span>{this.state.todo.body}</span>
+            todoBody = <span className="todo-body">{this.state.todo.body}</span>
         }
 
         return (
