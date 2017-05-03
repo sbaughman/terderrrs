@@ -31,10 +31,7 @@ export default class Todo extends Component {
     }
 
     editTodo() {
-        this.setState({editing: true}, () => {
-            const input = document.querySelector('input.todo-body')
-            input.focus()
-        })
+        this.setState({editing: true})
     }
 
     updateTodo() {
@@ -54,7 +51,7 @@ export default class Todo extends Component {
     render() {
         let todoBody = null;
         if (this.state.editing) {
-            todoBody = <input className="todo-body" value={this.state.todo.body} onChange={this.handleChange} onBlur={this.updateTodo}/>
+            todoBody = <input autoFocus className="todo-body" value={this.state.todo.body} onChange={this.handleChange} onBlur={this.updateTodo}/>
         } else {
             todoBody = <span className="todo-body">{this.state.todo.body}</span>
         }

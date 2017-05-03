@@ -46,5 +46,4 @@ test('Todo component toggles the edit form when edit todo button is clicked', ()
     editButton.simulate('click')
     editForm = wrapper.find('input.todo-body')
     expect(editForm.node).toBeTruthy()
-
 })
