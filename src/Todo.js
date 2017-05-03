@@ -38,6 +38,7 @@ export default class Todo extends Component {
     }
 
     updateTodo() {
+        this.setState({editing: false})
         this.props.updateTodo(this.props.id, this.state.todo)
     }
 
@@ -62,13 +63,13 @@ export default class Todo extends Component {
             <li style={styles['todo-item']} className="list-group-item">
                 {todoBody}
                 <div className="btn-group pull-right">
-                    <button className="btn btn-success" onClick={this.toggleComplete}>
+                    <button className="btn btn-success toggle-complete" onClick={this.toggleComplete}>
                         <span className={this.state.todo.completed ? 'glyphicon glyphicon-remove' : 'glyphicon glyphicon-ok'}></span>
                     </button>
-                    <button className="btn btn-warning" onClick={this.editTodo}>
+                    <button className="btn btn-warning edit-todo" onClick={this.editTodo}>
                         <span className="glyphicon glyphicon-pencil"></span>
                     </button>
-                    <button className="btn btn-danger" onClick={this.deleteTodo}>
+                    <button className="btn btn-danger delete-todo" onClick={this.deleteTodo}>
                         <span className="glyphicon glyphicon-trash"></span>
                     </button>
                 </div>
