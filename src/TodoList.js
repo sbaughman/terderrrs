@@ -3,14 +3,21 @@ import React from 'react'
 import Todo from './Todo'
 
 export default function TodoList(props) {
-    const todos = Object.keys(props.todos).map((todoId, index) => {
-        return (<Todo key={index} todo={props.todos[todoId]} id={todoId} {...props}/>)
+    const incompleteTodos = Object.keys(props.todos).filter((todoId) => !props.todos[todoId].completed).map(todoId => {
+        return (<Todo key={todoId} todo={props.todos[todoId]} id={todoId} {...props} />)
+    })
+    const completedTodos = Object.keys(props.todos).filter((todoId) => props.todos[todoId].completed).map(todoId => {
+        return (<Todo key={todoId} todo={props.todos[todoId]} id={todoId} {...props} />)
     })
     return (
         <div>
-            <h2>Dis mah list of stuff ter derrr</h2>
+            <h3>Dis mah list of stuff ter derrr</h3>
             <ul className="list-group">
-                {todos}
+                {incompleteTodos}
+            </ul>
+            <h3>Recently completed terderrrs</h3>
+            <ul className="list-group">
+                {completedTodos}
             </ul>
         </div>
     )
